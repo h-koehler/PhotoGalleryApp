@@ -7,6 +7,7 @@ import edu.vt.cs5254.fancygallery.api.GalleryItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 private const val TAG = "GalleryViewModel"
@@ -21,12 +22,29 @@ class GalleryViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            try {
-                val items = photoRepository.fetchPhotos(99)
-                Log.d(TAG, "Items received: $items")
-                _galleryItems.value = items
-            } catch (ex: Exception) {
-                Log.e(TAG, "Failed to fetch gallery items", ex)
+            _galleryItems.value = emptyList()
+            _galleryItems.update {
+                loadPhotos()
+            }
+        }
+    }
+
+    private suspend fun loadPhotos(): List<GalleryItem> {
+        return try {
+            val items = photoRepository.fetchPhotos(99)
+            Log.d(TAG, "Items received: $items")
+            items
+        } catch (ex: Exception) {
+            Log.e(TAG, "Failed to fetch gallery items", ex)
+            emptyList()
+        }
+    }
+
+    fun reloadGalleryItems() {
+        viewModelScope.launch {
+            _galleryItems.value = emptyList()
+            _galleryItems.update {
+                loadPhotos()
             }
         }
     }
