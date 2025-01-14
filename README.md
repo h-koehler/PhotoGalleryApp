@@ -1,0 +1,6 @@
+# Photo Gallery App
+The Photo Gallery App is an Android App that downloads and displays a collection of curated images from Flickr, a photo hosting/sharing site, using their interestingness API. The default display is a scrolling grid. The user can toggle the display to place the images on a world map based on the coordinates embedded in the photos. The user can click any image, from either the grid or map, to view the Flickr web page for said image.
+
+| ![image](https://github.com/user-attachments/assets/548e7951-987c-4db7-9e1b-583ad2b986de) | ![image](https://github.com/user-attachments/assets/560ca6d2-0a31-4085-8a6e-c4233010ba8e) | ![image](https://github.com/user-attachments/assets/e34825a5-63bc-4599-bf5b-ba6f5befffe8) |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Gallery View                                                                              | Map View                                                                                  | In-App Web Browser                                                                        |
