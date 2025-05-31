@@ -9,7 +9,9 @@ data class GalleryItem (
     val title: String,
     val id: String,
     @Json(name = "url_s") val url: String,
-    val owner: String
+    val owner: String,
+    val latitude: Double,
+    val longitude: Double,
 ) {
     val photoPageUri: Uri = Uri.parse("https://www.flickr.com/photos/")
         .buildUpon()
